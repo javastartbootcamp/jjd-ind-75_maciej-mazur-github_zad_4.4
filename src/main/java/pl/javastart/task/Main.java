@@ -1,25 +1,29 @@
 package pl.javastart.task;
 
 import pl.javastart.task.bank.CustomerService;
+import pl.javastart.task.bank.Offer;
+import pl.javastart.task.bank.SalesRepresentative;
 
 public class Main {
     public static void main(String[] args) {
-        //SalesRepresentative salesRepresentative = new SalesRepresentative();
+        SalesRepresentative salesRepresentative = new SalesRepresentative();
 
         // to nie powinno być możliwe
         //salesRepresentative.config.minRequiredEarnings = 0;
 
-        //Offer offer = salesRepresentative.createLoanOffer(1_000_000, 1000);  -
-        // może się mylę, ale uważam, że powyższe polecenie również nie powinno być z tego poziomu dla usera możliwe do wykonania
+        Offer offer1 = salesRepresentative.createLoanOffer(1_000_000, 1000);
 
         // to również nie powinno być możliwe
 //        offer.valid = true;
 //        offer.percentage = -0.5;
 //        offer.value = 2_000_000;
 
+        offer1.showOffer();
         CustomerService customerService = new CustomerService();
-        customerService.payoutOffer(1_000_000, 2000);
-        System.out.println("**********************************************");
-        customerService.payoutOffer(1_000_000, 1000);
+        customerService.payoutOffer(offer1);
+        System.out.println("****************************************");
+        Offer offer2 = salesRepresentative.createLoanOffer(1_000_000, 2000);
+        offer2.showOffer();
+        customerService.payoutOffer(offer2);
     }
 }
